@@ -1,35 +1,92 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from "react";
+import "./App.css";
+import CoordinatesInput from "./components/CoordinatesInput";
+import { ToggleButtons } from "./components/ToggleButtons";
+import { InstructionsList } from "./components/InstructionList";
+// import { RobotController } from "./components/RobotController";
 
-function App() {
-  const [count, setCount] = useState(0)
+export type Position = {
+  x: number;
+  y: number;
+};
+
+export type SelectedDirection = "NORTH" | "SOUTH" | "EAST" | "WEST";
+
+const BOARD_SIZE_X = 5;
+const BOARD_SIZE_Y = 5;
+
+const App: React.FC = () => {
+  const [robotPosition, setRobotPosition] = useState<Position>({ x: 0, y: 0 });
+  const [selectedDirection, setSelectedDirection] =
+    useState<null | SelectedDirection>(null);
+
+  const [instructions, setInstructions] = useState<string[]>([]);
+
+  const addInstruction = (instruction: string) => {
+    setInstructions((prevInstructions) => [...prevInstructions, instruction]);
+  };
+
+  const handleCoordinatesChange = (axis: "x" | "y", value: number) => {
+    if (axis === "x") {
+      // Restrict x coordinate to be below BOARD_SIZE_X
+      value = Math.min(BOARD_SIZE_X, value);
+    }
+
+    setRobotPosition((prevPosition) => ({
+      ...prevPosition,
+      [axis]: value,
+    }));
+  };
+
+  const handlePlaceRobot = () => {
+    // Clear previous instruction to start again
+    setInstructions([]);
+
+    addInstruction(
+      `PLACE ${robotPosition.x},${robotPosition.y},${selectedDirection}`
+    );
+  };
+
+  const handleReport = () => {};
 
   return (
-    <>
+    <div className="App">
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        Board Size: X= {BOARD_SIZE_X}
+        Y= {BOARD_SIZE_Y}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
+      <p>
+        Robot Initial Position: X: {robotPosition.x}, Y: {robotPosition.y}
       </p>
-    </>
-  )
-}
+      <p> Facing: {selectedDirection}</p>
+      <CoordinatesInput
+        onChange={handleCoordinatesChange}
+        maxX={BOARD_SIZE_X}
+        maxY={BOARD_SIZE_Y}
+      />
+      <ToggleButtons
+        selected={selectedDirection}
+        onChange={setSelectedDirection}
+      />
 
-export default App
+      <button onClick={handlePlaceRobot}>Place</button>
+
+      <div>Instructions</div>
+
+      <button onClick={() => addInstruction("MOVE")}>Move</button>
+      <button onClick={() => addInstruction("LEFT")}>Left</button>
+      <button onClick={() => addInstruction("RIGHT")}>Right</button>
+      <button onClick={handleReport}>Report</button>
+
+      <InstructionsList instructions={instructions} />
+      {/* add logic 
+      <RobotController
+        instructions={instructions}
+        BOARD_SIZE_X={BOARD_SIZE_X}
+        BOARD_SIZE_Y={BOARD_SIZE_Y}
+  /> */}
+    </div>
+  );
+};
+
+export default App;
