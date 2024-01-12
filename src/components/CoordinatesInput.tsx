@@ -7,9 +7,17 @@ type ChangeCoord = {
   onChange: (axis: "x" | "y", value: number) => void;
   maxX: number;
   maxY: number;
+  xValue: number;
+  yValue: number;
 };
 
-export const CoordinatesInput = ({ onChange, maxX, maxY }: ChangeCoord) => {
+export const CoordinatesInput = ({
+  onChange,
+  maxX,
+  maxY,
+  xValue = 0,
+  yValue = 0,
+}: ChangeCoord) => {
   const handleCoordinatesChange = (axis: "x" | "y", value: string) => {
     let parsedValue = parseInt(value, 10) || 0;
 
@@ -26,6 +34,7 @@ export const CoordinatesInput = ({ onChange, maxX, maxY }: ChangeCoord) => {
     <div>
       <label>X:</label>
       <input
+        value={xValue}
         style={{ minWidth: 100 }}
         type="number"
         onChange={(e) => handleCoordinatesChange("x", e.target.value)}
@@ -34,6 +43,7 @@ export const CoordinatesInput = ({ onChange, maxX, maxY }: ChangeCoord) => {
       />
       <label>Y:</label>
       <input
+        value={yValue}
         style={{ minWidth: 100 }}
         type="number"
         onChange={(e) => handleCoordinatesChange("y", e.target.value)}

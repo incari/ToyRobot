@@ -2,7 +2,7 @@ type DirectionOptions = "NORTH" | "SOUTH" | "EAST" | "WEST";
 
 type ToggleButtonsProps = {
   selected: DirectionOptions | null;
-  onChange: (option: DirectionOptions | null) => void;
+  onChange: (option: DirectionOptions) => void;
 };
 
 export const ToggleButtons: React.FC<ToggleButtonsProps> = ({
@@ -10,7 +10,7 @@ export const ToggleButtons: React.FC<ToggleButtonsProps> = ({
   onChange,
 }) => {
   const handleButtonClick = (option: DirectionOptions) => {
-    onChange(option === selected ? null : option);
+    onChange(option);
   };
 
   return (
