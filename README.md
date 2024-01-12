@@ -1,30 +1,66 @@
-# React + TypeScript + Vite
+# Toy Robot Simulator
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Description
 
-Currently, two official plugins are available:
+- The application is a simulation of a toy robot moving on a square tabletop, with dimensions 5 units x 5 units.
+- There are no other obstructions on the table surface.
+- The robot is free to roam around the surface of the table but must be prevented from falling to destruction. Any movement that would result in the robot falling from the table must be prevented; however, further valid movement commands must still be allowed.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Commands
 
-## Expanding the ESLint configuration
+Create an application that can read in commands of the following form:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- `PLACE X,Y,F`: Places the toy robot on the table in position X,Y and facing NORTH, SOUTH, EAST, or WEST.
+- `MOVE`: Moves the toy robot one unit forward in the direction it is currently facing.
+- `LEFT` and `RIGHT`: Rotate the robot 90 degrees in the specified direction without changing its position.
+- `REPORT`: Announces the X, Y, and F of the robot. This can be in any form, but standard output is sufficient.
 
-- Configure the top-level `parserOptions` property like this:
+### Placement Details
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: "latest",
-    sourceType: "module",
-    project: ["./tsconfig.json", "./tsconfig.node.json"],
-    tsconfigRootDir: __dirname,
-  },
-};
-```
+- The origin (0,0) can be considered the SOUTH WEST most corner.
+- The first valid command to the robot is a PLACE command. After that, any sequence of commands may be issued, in any order, including another PLACE command. The application should discard all commands in the sequence until a valid PLACE command has been executed.
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+### Ignoring Commands
+
+- A robot that is not on the table can choose to ignore the MOVE, LEFT, RIGHT, and REPORT commands.
+- Input can be from a file or from standard input, as the developer chooses.
+
+## Constraints
+
+- The toy robot must not fall off the table during movement. This includes the initial placement of the toy robot.
+- Any move that would cause the robot to fall must be ignored.
+
+## Example Input and Output
+
+### Example a
+
+PLACE 0,0,NORTH
+MOVE
+REPORT
+
+### Expected output:
+
+0,1,NORTH
+
+### Example b
+
+PLACE 0,0,NORTH
+LEFT
+REPORT
+
+### Expected output:
+
+0,0,WEST
+
+### Example c
+
+PLACE 1,2,EAST
+MOVE
+MOVE
+LEFT
+MOVE
+REPORT
+
+### Expected output
+
+3,3,NORTH
