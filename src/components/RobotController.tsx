@@ -99,7 +99,12 @@ export const RobotController: React.FC<RobotControllerProps> = ({
         X: {report?.position.x}, Y: {report?.position.y}, Facing:{" "}
         {report?.direction}
       </p>
-      <button onClick={handleReportClick}>Report</button>
+      <button
+        disabled={Boolean(instructions.length === 0)}
+        onClick={handleReportClick}
+      >
+        Report
+      </button>
     </div>
   );
 };

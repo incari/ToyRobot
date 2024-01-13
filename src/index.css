@@ -45,6 +45,8 @@ button {
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
+  margin: 1rem;
+  
 }
 button:hover {
   border-color: #646cff;
@@ -52,6 +54,38 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+.selected {
+  background-color: #646cff;
+  color: #ffffff
+}
+
+ul {
+  list-style-type: none;
+}
+
+li {
+  display: flex;
+  align-items: center; /* Vertically center the contents */
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+
+.deleteButton {
+  cursor: pointer;
+  border: none;
+  border-radius: 50%;
+  padding: 5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 10px;
+}
+
+.deleteIcon {
+  width: 20px;
+  height: 20px;
 }
 
 @media (prefers-color-scheme: light) {
