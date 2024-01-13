@@ -88,35 +88,43 @@ const App: React.FC = () => {
       >
         Clear
       </button>
+      <div className="container">
+        <div className="column">
+          <h3>Instructions</h3>
+          <div className="container">
+            <button
+              disabled={Boolean(instructions.length === 0)}
+              onClick={() => addInstruction("MOVE")}
+            >
+              Move
+            </button>
+            <button
+              disabled={Boolean(instructions.length === 0)}
+              onClick={() => addInstruction("LEFT")}
+            >
+              Left
+            </button>
+            <button
+              disabled={Boolean(instructions.length === 0)}
+              onClick={() => addInstruction("RIGHT")}
+            >
+              Right
+            </button>
+          </div>
 
-      <h3>Instructions</h3>
-
-      <button
-        disabled={Boolean(instructions.length === 0)}
-        onClick={() => addInstruction("MOVE")}
-      >
-        Move
-      </button>
-      <button
-        disabled={Boolean(instructions.length === 0)}
-        onClick={() => addInstruction("LEFT")}
-      >
-        Left
-      </button>
-      <button
-        disabled={Boolean(instructions.length === 0)}
-        onClick={() => addInstruction("RIGHT")}
-      >
-        Right
-      </button>
-
-      <InstructionsList instructions={instructions} onRemove={handleRemove} />
-
-      <RobotController
-        instructions={instructions}
-        BOARD_SIZE_X={BOARD_SIZE_X}
-        BOARD_SIZE_Y={BOARD_SIZE_Y}
-      />
+          <InstructionsList
+            instructions={instructions}
+            onRemove={handleRemove}
+          />
+        </div>
+        <div className="column">
+          <RobotController
+            instructions={instructions}
+            BOARD_SIZE_X={BOARD_SIZE_X}
+            BOARD_SIZE_Y={BOARD_SIZE_Y}
+          />
+        </div>
+      </div>
     </div>
   );
 };
