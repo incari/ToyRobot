@@ -50,6 +50,12 @@ const App: React.FC = () => {
     );
   };
 
+  const handleRemove = (index: number) => {
+    const newInstructions = [...instructions];
+    newInstructions.splice(index, 1);
+    setInstructions(newInstructions);
+  };
+
   return (
     <div className="App">
       <div>
@@ -78,11 +84,12 @@ const App: React.FC = () => {
           setInstructions([]);
           setRobotPosition({ x: 0, y: 0 });
         }}
+        disabled={Boolean(instructions.length === 0)}
       >
         Clear
       </button>
 
-      <div>Instructions</div>
+      <h3>Instructions</h3>
 
       <button
         disabled={Boolean(instructions.length === 0)}
@@ -103,7 +110,7 @@ const App: React.FC = () => {
         Right
       </button>
 
-      <InstructionsList instructions={instructions} />
+      <InstructionsList instructions={instructions} onRemove={handleRemove} />
 
       <RobotController
         instructions={instructions}
