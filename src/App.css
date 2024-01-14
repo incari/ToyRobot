@@ -17,6 +17,57 @@
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
+.info-container {
+  display: flex;
+  justify-content: space-between;
+  max-width: 600px;
+  margin: 20px auto;
+}
+
+.info-column {
+  flex: 1;
+  border: 1px solid #ddd;
+  padding: 10px 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.info-column h3 {
+  font-size: 16px;
+}
+
+.info-column p {
+  font-size: 14px;
+  margin: 10px 0;
+}
+
+.coordinates-input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.input-label {
+  font-size: 14px;
+  margin-bottom: 5px;
+  margin-right: 10px;
+}
+
+.input-field {
+  width: 100px;
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: #007bff;
+}
 
 @keyframes logo-spin {
   from {

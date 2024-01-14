@@ -31,25 +31,29 @@ export const CoordinatesInput = ({
     onChange(axis, parsedValue);
   };
   return (
-    <div>
-      <label>X:</label>
-      <input
-        value={xValue}
-        style={{ minWidth: 100 }}
-        type="number"
-        onChange={(e) => handleCoordinatesChange("x", e.target.value)}
-        min={0}
-        max={maxX}
-      />
-      <label>Y:</label>
-      <input
-        value={yValue}
-        style={{ minWidth: 100 }}
-        type="number"
-        onChange={(e) => handleCoordinatesChange("y", e.target.value)}
-        min={0}
-        max={maxY}
-      />
+    <div className="coordinates-input">
+      <div>
+        <label className="input-label">X:</label>
+        <input
+          className="input-field"
+          value={xValue}
+          type="number"
+          onChange={(e) => handleCoordinatesChange("x", e.target.value)}
+          min={0}
+          max={maxX}
+        />
+      </div>
+      <div>
+        <label className="input-label">Y:</label>
+        <input
+          className="input-field"
+          value={yValue}
+          type="number"
+          onChange={(e) => handleCoordinatesChange("y", e.target.value)}
+          min={0}
+          max={maxY}
+        />
+      </div>
     </div>
   );
 };

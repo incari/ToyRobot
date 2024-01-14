@@ -58,21 +58,31 @@ const App: React.FC = () => {
 
   return (
     <div className="App">
-      <div>
-        Board Size: X= {BOARD_SIZE_X}
-        Y= {BOARD_SIZE_Y}
+      <div className="info-container">
+        <div className="info-column">
+          <h3>Board Size</h3>
+          <p>
+            X: {BOARD_SIZE_X} Y: {BOARD_SIZE_Y}
+          </p>
+        </div>
+        <div className="info-column">
+          <h3>Initial Position</h3>
+          <p>
+            <CoordinatesInput
+              onChange={handleCoordinatesChange}
+              maxX={BOARD_SIZE_X}
+              maxY={BOARD_SIZE_Y}
+              xValue={robotPosition.x}
+              yValue={robotPosition.y}
+            />
+          </p>
+        </div>
+        <div className="info-column">
+          <h3>Facing</h3>
+          <p>{selectedDirection}</p>
+        </div>
       </div>
-      <p>
-        Robot Initial Position: X: {robotPosition.x}, Y: {robotPosition.y}
-      </p>
-      <p> Facing: {selectedDirection}</p>
-      <CoordinatesInput
-        onChange={handleCoordinatesChange}
-        maxX={BOARD_SIZE_X}
-        maxY={BOARD_SIZE_Y}
-        xValue={robotPosition.x}
-        yValue={robotPosition.y}
-      />
+
       <ToggleButtons
         selected={selectedDirection}
         onChange={setSelectedDirection}
