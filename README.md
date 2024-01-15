@@ -1,5 +1,35 @@
 # Toy Robot Simulator
 
+## Demo
+
+Visit the deployed application: [Toy Robot](https://toy-robot-mu.vercel.app/)
+
+## Installation
+
+To set up this project locally, follow these steps:
+
+1. **Clone the Repository**
+
+   First, clone the project repository to your local machine using Git:
+
+   ```bash
+   git clone https://github.com/your-username/your-repository-name.git
+   cd your-repository-name
+
+   ```
+
+2. **Install**
+
+   ```npm install  or yarn install
+
+   ```
+
+3. **Run the App**
+
+   ```npm run dev  or yarn dev
+
+   ```
+
 ## Description
 
 - The application is a simulation of a toy robot moving on a square tabletop, with dimensions 5 units x 5 units.
