@@ -21,14 +21,15 @@ To set up this project locally, follow these steps:
 2. **Install**
 
    ```bash
-    npm install  or yarn install
+   npm install  or yarn install
 
    ```
 
 3. **Run the App**
 
-```bash
-    npm run dev  or yarn dev
+   ```bash
+   npm run dev  or yarn dev
+   ```
 
 ```
 
@@ -96,3 +97,4 @@ REPORT
 ### Expected output
 
 3,3,NORTH
+```
