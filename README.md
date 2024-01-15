@@ -20,13 +20,15 @@ To set up this project locally, follow these steps:
 
 2. **Install**
 
-   ```npm install  or yarn install
+   ```bash
+   npm install  or yarn install
 
    ```
 
 3. **Run the App**
 
-   ```npm run dev  or yarn dev
+   ```bash
+   npm run dev  or yarn dev
 
    ```
 
