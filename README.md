@@ -2,7 +2,7 @@
 
 ## Demo
 
-Visit the deployed application: [Toy Robot](https://toy-robot-mu.vercel.app/){:target="_blank"}
+Visit the deployed application: [Toy Robot](https://toy-robot-mu.vercel.app/)
 
 ## Installation
 
