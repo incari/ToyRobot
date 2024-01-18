@@ -4,6 +4,7 @@ import CoordinatesInput from "./components/CoordinatesInput";
 import { ToggleButtons } from "./components/ToggleButtons";
 import { InstructionsList } from "./components/InstructionList";
 import { RobotController } from "./components/RobotController";
+// Adding new config in Macbook air
 
 export type Position = {
   x: number;
@@ -37,7 +38,7 @@ const App: React.FC = () => {
 
     setRobotPosition((prevPosition) => ({
       ...prevPosition,
-      [axis]: value,
+      [axis]: value
     }));
   };
 
